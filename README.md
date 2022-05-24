@@ -25,13 +25,14 @@ Abstract
        4. C++
     2. L
        1. Interface SLF4J
-       2. Log$J
-       3. GrayLog
-       4. Allmans Log
+       2. Log4J
+       3. Log4Shell
+       4. GrayLog
+       5. Allmans Log
        
-       5. ErrorLog
-       6. Debug Log
-       7. ...
+       6. ErrorLog
+       7. Debug Log
+       8. ...
     3. T
        1. Jaeger
     4. M
