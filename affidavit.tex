@@ -1,0 +1,25 @@
+\chapter*{Eidesstattliche Erklärung} % kein Eintrag im Inhaltsverzeichnis
+
+Ich versichere hiermit, dass ich die vorliegende {\subjectDocument} mit dem Thema
+\begin{quote}
+	\textit{\titleDocument}
+\end{quote}
+selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe, wobei ich alle wörtlichen und sinngemäßen Zitate als solche gekennzeichnet habe.
+Die Arbeit wurde bisher keiner anderen Prüfungsbehörde vorgelegt und auch nicht veröffentlicht.
+
+\vspace*{2cm}
+
+\begingroup
+	\setlength{\parindent}{0pt} % keine Einrückung bei neuen Absätzen in diesem Bereich
+	
+	\locationDocument, den \dateDocument
+	\bigskip
+	\bigskip
+	
+	% gewünschte Breite der Unterschriftslinie
+	\newlength{\widthbox}
+	\settowidth{\widthbox}{\locationDocument, den \dateDocument}
+	
+	\makebox[\widthbox]{\hrulefill}\\
+	\authorDocument
+\endgroup

@@ -1,0 +1,26 @@
+\chapter{Einleitung} \label{sec:introduction}
+
+In diesem Kapitel wird die Nutzung einiger \LaTeX{}-Funktionen und Funktionen aus verschiedenen Paketen vorgeführt.
+
+\section{Referenzen} \label{sec:references}
+
+In den folgenden Abschnitten sind Umsetzungen von Zitierungen und Verweise zu finden.
+
+\subsection{Zitierungen}
+
+Quellenangaben werden am Besten mit \enquote{autocite} durchgeführt \autocite{Mann1947}, Befehle um weitere Informationen aus der Quelle auslesen zu können sind ebenfalls vorhanden: \textcite{Mann1947}, \citeauthor{Mann1947}, \citetitle{Mann1947}.
+
+\subsection{Verweise} \label{sec:references:links}
+
+Verweise auf Kapitel, Abschnitte, Bilder und Tabellen werden mit dem \enquote{autoref} Befehl eingefügt: \autoref{sec:introduction}, \autoref{sec:references}, \autoref{sec:references:links}, \autoref{fig:results:spindle-detection-u-net}, \autoref{tab:results:f1-scores}.
+Ein benutzerdefinierter Text kann hierbei wie folgt eingefügt werden: Im \hyperref[sec:summary]{letzten Kapitel} wird eine Zusammenfassung durchgeführt.
+
+\section{Akronyme}
+
+Akronyme wie \gls{cnn} werden so benutzt und besitzen unterschiedliche Ausgaben bei der ersten Nutzung und bei darauffolgenden Verwendungen, bei denen nur die Kurzform (\gls{cnn}) genutzt wird.
+
+\section{Weitere Funktionen}
+
+Zahlen, Einheiten und Kombinationen daraus können besonders gut mit dem \textit{siunitx} Paket umgesetzt und konsistent formatiert werden.
+So kann \zB{} eine Liste von Zahlen als \numlist{1.25; 2.5; 5} und ein Frequenzbereich als \SIrange{11}{16}{\Hz} (optional mit anderer Formatierung, \zB{} \SIrange[range-phrase=--, range-units=single]{11}{16}{\Hz}) angegeben werden.
+Auch Prozentangaben sind möglich: \SI{80}{\percent}.

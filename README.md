@@ -53,5 +53,3 @@ Abstract
 5. Woche: Einleitung, Zusammenfassung und Ausblick
 6. Woche: Überarbeiten 
 
-
-# Bachelorarbeit
