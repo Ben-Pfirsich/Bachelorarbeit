@@ -4,12 +4,12 @@
 
 # Struktur
 
-Sperrvermerk
-Erklärung
-Abstract
+0. Sperrvermerk
+1. Erklärung
+2. Abstract
 
-1. Einleitung
-2. Was ist L, T & M
+3. Einleitung
+4. Was ist L, T & M
     1. L, T & M
         1. L
         2. T
@@ -17,7 +17,7 @@ Abstract
     2. Sinnvolles Nutzen
     3. Sinnvolle Ausgaben
     4. Wann ist es übertrieben
-3. Verfahren
+5. Verfahren
     1. Standards aus verschiedenen Sprachen
        1. Java
        2. JavaScript
@@ -41,10 +41,10 @@ Abstract
        3. Argos
     5. Weiterentwicklungen
     6. Performance ggf Verlust durch Nutzen
-4. Nutzen in Projekt 
+6. Nutzen in Projekt 
    1. Aktuelle Nutzung
    2. Verbesserung
-5. Zusammenfassung und Ausblick
+7. Zusammenfassung und Ausblick
 
 # Zeitplan
 1. Woche: Quellensuche, Thema einarbeiten

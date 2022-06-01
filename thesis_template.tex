@@ -25,12 +25,12 @@
 %       die Bindungskorrektur wird von KOMA-Script dazu genutzt, den Verlust von Papier bei der Bindung in die Wahl der Seitenränder einzubeziehen, 10-12mm sind hier angebracht; für die reine Betrachtung als PDF wäre eigentlich eine Bindungskorrektur von 0 korrekt, dies würde allerdings zwei unterschiedliche Versionen mit ganz anderen Seitenrändern erfordern, von einer solchen Unterscheidung würde ich also abraten
 %       DIV ist der Mechanismus der KOMA-Script Klassen für die Bestimmung der Breite der Seitenränder; ein guter Wert kann über "DIV=calc" berechnet werden und aus der log-Datei ausgelesen werden, anschließend kann man davon ausgehend leichte Änderungen vornehmen; für eine Schriftgröße von 12pt und einer Bindungskorrektur von 12mm ist 10 ein guter Wert; alternativ kann das geometry Paket verwendet werden, siehe dazu auch diverse weitere TODOs
 \documentclass[
-	12pt, % Schriftgröße
-	twoside, % zweiseitiger Modus
-	ngerman, % deutsches Dokument
-	BCOR=12mm, % Bindungskorrektur
-	DIV=10, % Division (Anzahl Spalten/Zeilen pro Seite, bestimmt implizit Margins)
-	bibliography=toc % Literatur zu Inhaltsverzeichnis hinzufügen
+    12pt, % Schriftgröße
+    twoside, % zweiseitiger Modus
+    ngerman, % deutsches Dokument
+    BCOR=12mm, % Bindungskorrektur
+    DIV=10, % Division (Anzahl Spalten/Zeilen pro Seite, bestimmt implizit Margins)
+    bibliography=toc % Literatur zu Inhaltsverzeichnis hinzufügen
 ]{scrreprt}
 
 % Variablen bezüglich des Titels, Autors und Subjects
@@ -54,40 +54,45 @@
 \hyphenation{Kon-fi-denz Kon-fi-denz-wert Mus-kel-ak-ti-vi-tät}
 
 \begin{document}
-	% ============ Anfang =============
-	% Titelseite
-	\include{title}
-	
-	% Eidesstattliche Erklärung und Abstrakt
-	\begingroup
-		% keine Seitenzahl und kein running header
-		\thispagestyle{empty}
-		\renewcommand*{\chapterpagestyle}{empty}
-		
-		\cleardoubleoddpage % Eidesstattliche Erklärung rechts, damit Unterschrift nicht durchdrückt
-		\include{affidavit}
-		
-		\cleardoubleoddpage % Abstrakt rechts
-		\include{abstract}
-		
-		\glsresetall % alle bereits genutzten Akronyme wieder zurücksetzen
-	\endgroup
-	
-	% Inhaltsverzeichnis
-	\cleardoubleoddpage % Inhaltsverzeichnis rechts
-	\thispagestyle{plain}
-	\tableofcontents
-	
-	% =========== Hauptteil ===========
-	\cleardoubleoddpage % Beginn Einleitung rechts
-	\include{introduction}
-	%\include{basics}
-	%\include{data}
-	%\include{methods}
-	\include{results}
-	\include{summary}
-	
-	% ============= Ende ==============
-	\cleardoubleoddpage % Literaturverzeichnis rechts
-	\printbibliography
+    % ============ Anfang =============
+    % Titelseite
+    \include{title}
+
+    % Eidesstattliche Erklärung und Abstrakt
+    \begingroup
+    % keine Seitenzahl und kein running header
+    \thispagestyle{empty}
+    \renewcommand*{\chapterpagestyle}{empty}
+
+    \include{sperrvermerk}
+    \cleardoubleoddpage % Eidesstattliche Erklärung rechts, damit Unterschrift nicht durchdrückt
+    \include{affidavit}
+
+    \cleardoubleoddpage % Abstrakt rechts
+    \include{abstract}
+
+    \glsresetall % alle bereits genutzten Akronyme wieder zurücksetzen
+    \endgroup
+
+    % Inhaltsverzeichnis
+    \cleardoubleoddpage % Inhaltsverzeichnis rechts
+    \thispagestyle{plain}
+    \tableofcontents
+
+    % =========== Hauptteil ===========
+    \cleardoubleoddpage % Beginn Einleitung rechts
+    \include{introduction}
+    \include{ltm}
+    \include{verfahren}
+    \include{projekt}
+
+    %\include{basics}
+    %\include{data}
+    %\include{methods}
+%    \include{results}
+    \include{summary}
+
+    % ============= Ende ==============
+    \cleardoubleoddpage % Literaturverzeichnis rechts
+    \printbibliography
 \end{document}
