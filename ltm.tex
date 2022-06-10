@@ -1,16 +1,54 @@
-\chapter{Was ist Logging, Tracing {\fontfamily{bch}\selectfont \&} Monitoring?}\label{ch:was-ist-logging-tracing-&-monitoring?}
+\chapter{Definitionen von Logging, Tracing {\fontfamily{bch}\selectfont \&} Monitoring}\label{ch:definition-von-logging-tracing-&-monitoring}
 
 
-\section{Logging, Tracing {\fontfamily{bch}\selectfont \&} Monitoring}\label{sec:logging-tracing-&-monitoring}
-
-\subsection{Logging}\label{subsec:logging}
+\section{Logging}\label{sec:logging}
 Das automatische Protokollieren von Ereignissen wird als Logging bezeichnet.
-Hierbei sind Ereignisse Fehlermeldungen, Systemnachrichten, Statusmeldungen, etc.\autocite{ip-insider, ait, owasp}
+Hierbei sind Ereignisse Fehlermeldungen, Systemnachrichten, Statusmeldungen, etc.
+Die Daten, die protokolliert werden, werden in eine Log-Datei geschrieben.
+Diese speichert die Ereignisse mit Zeitstempel und meist chronologisch ab.
+Außerdem werden die einzelnen Logs mit einem Loglevel versehen, um dem Nutzer das Protokoll besser auswerten kann.
+Es gibt sechs verschiedene Loglevel.
+Das schwerwiegendste Level heißt \enquote{Fatal}, hierbei spiegeln die Logs wider, dass die Applikation in einem katastrophalen Zustand ist und eingegriffen werden muss.
+Falls dieses Level auftritt, sollte sofort eingegriffen werden, um die Applikation wieder verfügbar zu machen.
+Das zweite Loglevel nennt sich \enquote{Error}, hierbei läuft die Applikation weiter, ist aber auf einen Fehler getroffen.
+Der Administrator sollte die Anwendung so früh wie möglich untersuchen und den Fehler beheben.
+Das nächste Level für Logs ist \enquote{Warning}.
+Die Applikation ist in einem Zustand, der nicht üblich ist.
+Dieser sollte analysiert werden, um wieder in den Normalzustand zu gelangen.
+Da die Anwendung läuft, hat die Fehlerbehebung nicht die höchste Priorität, sollte trotzdem zeitnah erledigt werden.
+Als viertes Loglevel wird \enquote{Information} bezeichnet.
+Dieses Level wird in der produktiven Umgebung genutzt, um Interessantes im Produktionssystem nachvollziehen zu können.
+In Testumgebungen wird das Loglevel \enquote{Debug} genutzt, um weitere Informationen auswerten zu können.
+Das letzte Loglevel wird \enquote{Verbose} genannt, hierbei werden alle Details einer Anwendung dokumentiert.
+\\
+Das Log-Management kümmert sich um die langfristige Speicherung, sodass die Daten über lange Zeit nachvollziehbar sind.
+Hierbei sollten die Logs an einer zentralen Stelle gespeichert werden, wie zum Beispiel einer Datenbank.
+Die Logs können kurzfristig auch in der Konsole ausgegeben werden, können jedoch nicht langzeitig ausgewertet.
+Lokale Speicherung der Logs in Dateien erschweren das Auswerten.
+Event-Management stellt Funktionen bereit, um diese Daten auswerten zu können.
+Zusammengefasst Log- und Event-Management sammeln die Log-Daten, speichern sie, sodass die Daten genutzt werden können, um Probleme zu identifizieren, Prozesse nachzuvollziehen, Systemleistung optimieren oder Cyberangriffe und andere Sicherheitsvorfälle zu erkennen und abzuwehren.
+\\
+Logs helfen dabei Sicherheitsvorfälle zu identifizieren.
+Falls gegen Richtlinien verstoßen wird, fallen diese in den Logs durch die Überwachung auf.
+In den Protokollen werden Informationen festgehalten, um Probleme und ungewöhnliches Verhalten nachvollziehen zu können.
+Manche Logs sind durch den Gesetzgeber verpflichtend, um Ereignisse nachverfolgen zu können.
+Transaktionen im Bankumfeld sind verpflichtend aufzuzeichnen, um die Nachvollziehbarkeit dieser Aktionen sicherzustellen.
+Im Gesundheitswesen ist Logging gesetzlich gefordert, um Compliance-Richtlinien zu erfüllen.
+Unter anderem gibt es die Datenschutzgrundverordnung, um die Daten richtig zu verarbeiten.
+\\
+Durch künstliche Intelligenz oder maschinelles Lernen können große Datenmengen automatisiert organisiert und ausgewertet werden.
+Logging sollte innerhalb einer Anwendung einheitlich verwendet werden.
+Das Logging sollte in der gesamten Organisation konsistent verwendet werden, um die Ereignisse, die in den Protokollen abgelegt sind, mit Ereignissen verschiedener Systeme vergleichen und verwalten zu können.
+\\
+%TODO: wann, wo, wer, was, sensible daten, Konkurrenten
+\autocite{ip-insider, ait, owasp}
 
-\subsection{Tracing}\label{subsec:tracing}
+
+\section{Tracing}\label{sec:tracing}
 Direkte.\autocite{adesso, monstarlab}
 
-\subsection{Monitoring}\label{subsec:monitoring}
+
+\section{Monitoring}\label{sec:monitoring}
 Status aller Komponenten.\autocite{cloudradar, wbs, crossmedia}
 
 %\section{Sinnvolle Nutzung}\label{sec:sinnvolle-nutzung}
