@@ -1,5 +1,12 @@
 \chapter{Definitionen von Logging, Tracing {\fontfamily{bch}\selectfont \&} Monitoring}\label{ch:definition-von-logging-tracing-&-monitoring}
-
+\textcolor{blue}{
+Es existiert kein fehlerfreies IT-System.
+Daher muss ein Prozess zu einem funktionierenden System geschaffen werden.
+Logging zeichnet auf, was eine Anwendung macht.
+Tracing protokolliert, wenn eine Anwendung andere Service aufruft.
+Monitoring zieht aus diesen Informationen Schlüsse, um Fehler einer Anwendung aufzudecken.
+Im Folgenden werden die drei Verfahren genauer erklärt.
+}
 
 \section{Logging}\label{sec:logging}
 Als Logging wird das automatische Protokollieren von Ereignissen bezeichnet.
@@ -89,59 +96,69 @@ Weitere mögliche Aufzeichnungen sind HTTP-Statuscodes oder interne Einordnung.
 
 \section{Tracing}\label{sec:tracing}
 \textcolor{blue}{
-Ein Trace ist die direkte Visualisierung eines Requests beim Durchlauf durch eine Anwendung oder eine komplette Anwendungslandschaft.
-Tracing macht es möglich, nachzuvollziehen,in welchen Zuständen ein Objekt zuvor war.
-Allerdings erhöht Tracing die Komplexität des Codes und ist daher besser geeignet für Microservicearchitekturen.
-Ein Trace zeichnet die verschiedenen Aufrufe auf, beispielsweise einen HTTP-Request oder einen Datenbankaufruf.
-\\
-Oft wird Tracing mit Tracking verglichen.
-Der Unterschied liegt dabei, dass Tracking den aktuellen Zustand beschreibt, wie zum Beispiel die GPS-Koordinaten einer Bestellung.
-Tracing beschreibt das Nachverfolgen.
+    Ein Trace ist die direkte Visualisierung eines Requests beim Durchlauf durch eine Anwendung oder eine komplette Anwendungslandschaft.
+    Tracing macht es möglich, nachzuvollziehen,in welchen Zuständen ein Objekt zuvor war.
+    Allerdings erhöht Tracing die Komplexität des Codes und ist daher besser geeignet für Microservicearchitekturen.
+    Ein Trace zeichnet die verschiedenen Aufrufe auf, beispielsweise einen HTTP-Request oder einen Datenbankaufruf.
+    Während der Entwicklung einer Anwendung können Zusatzinformationen zum Verarbeitungsprozess nützlich sein.
+    Neben den üblichen Ausgaben einer Anwendung helfen die Zusatzinformationen beim Testen der Anwendung.
+    Bei Microservices hilft das Distributed Tracing und es bezeichnet die verteilte Rückverfolgung.
+    Hierbei werden einzelne Prozesse getrennt und somit wird erkennbar, wo Probleme entstanden sin.
+    Um bei Problemen den verursachenden Microservice zu identifizieren, erhält jeder Prozess eine Profil-ID.
+    Jeder Microservice signiert jede Nutzungsanfrage mit dieser ID.
+    Alle Prozesse lassen sich so einem bestimmten Service zuordnen, identifizieren und analysieren.
+    Falls nun ein Fehler auftritt, lässt sich der Microservice, der den fehlerhaften Prozess ausführt, durch die ID identifizieren.
+    Insgesamt ist die Fehlersuche vereinfacht.
+    Des Weiteren unterstützt Tracing beim Debugging.
+    \\
+    Oft wird Tracing mit Tracking verglichen.
+    Der Unterschied liegt dabei, dass Tracking den aktuellen Zustand beschreibt, wie zum Beispiel die GPS-Koordinaten einer Bestellung.
+    Tracing beschreibt das Nachverfolgen, für das gleiche Beispiel wird beim Tracing der Bestelleingang, Verarbeitungsprozess etc. protokolliert.
 }\autocite{adesso, monstarlab}
 
 
 \section{Monitoring}\label{sec:monitoring}
 \textcolor{blue}{
-Monitoring sammelt viele Daten und zielt darauf ab, richtige Schlüsse zu ziehen.
-Ein einfaches Beispiel, das Monitoring sollte erkennen, dass ein Problem vorliegt, wenn eine Komponente ausfällt.
-Hierfür wird die Anwendung konstant überwacht und der Status aller Komponenten erfasst.
-Des Weiteren werden die Daten der Anwendung oder Systems aufbereitet und bewertet, sodass sie in einer übersichtlichen Zusammenfassung präsentiert werden können.
-Durch Monitoring fallen Abweichungen vom Normalzustand auf, dadurch sollte ein Alarm ausgelöst werden, um den Nutzer aufzufordern den Fehler zu beheben.
-Je nach Schweregrad des Fehlers werden verschiedene Medien zum Benachrichtigen des Nutzers verwendet.
-Durch den Vergleich zu historischen Daten soll das Monitoring-System Aussagen über die Zuverlässigkeit einer Anwendung treffen.
-Durch das Überwachen einer Anwendung können Ausfälle vermieden und vorgebeugt werden.
-Ein Interface des Monitorings zeigt die Performance und Auslastung der Komponenten, die durchgehend gemessen werden.
-Diese Überwachung wird genutzt, um Hardwareausstattung zu planen.
-\\
-Anforderungen an ein Monitoring-System können in fünf Kategorien unterteilt werden.
-Zunächst beobachtet das Monitoring den Zustand des Systems.
-Hierzu gehört das \enquote{End-to-End}-Monitoring, welches die ausgelieferten Daten so nah wie möglich am Endnutzer auf Funktionalität überprüft.
-Zur Zustandserfassung gehört die Statuserfassung der Dienste, unter anderem die Hardwareauslastung, als auch die Softwareüberwachung.
-Des Weiteren werden diese Informationen für lange Zeit gespeichert, um die Verfügbarkeit von Diensten und Komponenten zu analysieren.
-Die zweite Kategorie ist die Alarmierung, welche das manuelle Eingreifen verlangen.
-Hierbei wird ein Mitarbeiter über die Ursache des Fehlers informiert.
-Die Reaktionszeit und Fehlerbehebung wird dokumentiert.
-Die nächste Kategorie wird als \enquote{Diagnose} bezeichnet, hierbei werden Informationen gesammelt,um die Ursachenanalyse von Fehlern detailliert zu ermöglichen.
-Die gesammelten Informationen dienen der Entscheidungsfindung.
-Die vierte Kategorie ist die Qualitätsmessung.
-Es werden Daten gesammelt, die über die Leistungsfähigkeit und den Durchschlag von Sytsemen und Anwendungen aufschluss geben.
-Außerdem werden vereinbarte Grenzwerte und deren Einhaltung erfasst.
-Dadurch können Engpässe und Überlastungen aufgedeckt werden.
-Die letzte Kategorie ist die Konfiguration.
-Hierfür werden standardisierte Konfigurationen überwacht und bei Abweichungen von standardisierten Vorgehen gewarnt.
-\\
-Monitoring bietet viele Vorteile.
-Unter Anderem werden die Abhängigkeiten zwischen Anwendungen abgebildet.
-Außerdem werden Trendanalysen genutzt, um den Einsatz von Rechenleistung und Ressourcen zu verbessern.
-\\
-Monitoring ist in zwei Arten vorhanden.
-Einmal gibt es das Historical Monitoring, welches proaktives Arbeiten fordert.
-Hierbei muss der Admin vorausschauend das Handeln planen.
-Mit Langzeitstatistiken werden Kapazitäten geplant und können die Budgetplanung des Unternehmens unterstützen.
-Der Admin erkennt die Missstände, informiert die Betroffenen und entwirft Lösungsansätze.
-Die zweite Art des Monitoring ist das Real-Time-Monitoring.
-Hierbei werden die Server überwacht und bei Problemen direkt reagiert.
-Im Idealfall werden Fehler registriert und behoben, bevor der Nutzer diesen bemerkt.
+    Monitoring sammelt viele Daten und zielt darauf ab, richtige Schlüsse zu ziehen.
+    Ein einfaches Beispiel, das Monitoring sollte erkennen, dass ein Problem vorliegt, wenn eine Komponente ausfällt.
+    Hierfür wird die Anwendung konstant überwacht und der Status aller Komponenten erfasst.
+    Des Weiteren werden die Daten der Anwendung oder Systems aufbereitet und bewertet, sodass sie in einer übersichtlichen Zusammenfassung präsentiert werden können.
+    Durch Monitoring fallen Abweichungen vom Normalzustand auf, dadurch sollte ein Alarm ausgelöst werden, um den Nutzer aufzufordern den Fehler zu beheben.
+    Je nach Schweregrad des Fehlers werden verschiedene Medien zum Benachrichtigen des Nutzers verwendet.
+    Durch den Vergleich zu historischen Daten soll das Monitoring-System Aussagen über die Zuverlässigkeit einer Anwendung treffen.
+    Durch das Überwachen einer Anwendung können Ausfälle vermieden und vorgebeugt werden.
+    Ein Interface des Monitorings zeigt die Performance und Auslastung der Komponenten, die durchgehend gemessen werden.
+    Diese Überwachung wird genutzt, um Hardwareausstattung zu planen.
+    \\
+    Anforderungen an ein Monitoring-System können in fünf Kategorien unterteilt werden.
+    Zunächst beobachtet das Monitoring den Zustand des Systems.
+    Hierzu gehört das \enquote{End-to-End}-Monitoring, welches die ausgelieferten Daten so nah wie möglich am Endnutzer auf Funktionalität überprüft.
+    Zur Zustandserfassung gehört die Statuserfassung der Dienste, unter anderem die Hardwareauslastung, als auch die Softwareüberwachung.
+    Des Weiteren werden diese Informationen für lange Zeit gespeichert, um die Verfügbarkeit von Diensten und Komponenten zu analysieren.
+    Die zweite Kategorie ist die Alarmierung, welche das manuelle Eingreifen verlangt.
+    Hierbei wird ein Mitarbeiter über die Ursache des Fehlers informiert.
+    Die Reaktionszeit und Fehlerbehebung wird dokumentiert.
+    Die nächste Kategorie wird als \enquote{Diagnose} bezeichnet, hierbei werden Informationen gesammelt,um die Ursachenanalyse von Fehlern detailliert zu ermöglichen.
+    Die gesammelten Informationen dienen der Entscheidungsfindung.
+    Die vierte Kategorie ist die Qualitätsmessung.
+    Es werden Daten gesammelt, die über die Leistungsfähigkeit und den Durchschlag von Sytsemen und Anwendungen aufschluss geben.
+    Außerdem werden vereinbarte Grenzwerte und deren Einhaltung erfasst.
+    Dadurch können Engpässe und Überlastungen aufgedeckt werden.
+    Die letzte Kategorie ist die Konfiguration.
+    Hierfür werden standardisierte Konfigurationen überwacht und bei Abweichungen von standardisierten Vorgehen gewarnt.
+    \\
+    Monitoring bietet viele Vorteile.
+    Unter Anderem werden die Abhängigkeiten zwischen Anwendungen abgebildet.
+    Außerdem werden Trendanalysen genutzt, um den Einsatz von Rechenleistung und Ressourcen zu verbessern.
+    \\
+    Monitoring ist in zwei Arten vorhanden.
+    Einmal gibt es das Historical Monitoring, welches proaktives Arbeiten fordert.
+    Hierbei muss der Admin vorausschauend das Handeln planen.
+    Mit Langzeitstatistiken werden Kapazitäten geplant und können die Budgetplanung des Unternehmens unterstützen.
+    Der Admin erkennt die Missstände, informiert die Betroffenen und entwirft Lösungsansätze.
+    Die zweite Art des Monitoring ist das Real-Time-Monitoring.
+    Hierbei werden die Server überwacht und bei Problemen direkt reagiert.
+    Im Idealfall werden Fehler registriert und behoben, bevor der Nutzer diesen bemerkt.
 }\autocite{cloudradar, wbs, crossmedia}
 
 %\section{Sinnvolle Nutzung}\label{sec:sinnvolle-nutzung}
