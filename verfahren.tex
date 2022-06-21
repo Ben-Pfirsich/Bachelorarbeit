@@ -3,16 +3,63 @@
 
 \section{Standards aus verschiedenen Sprachen}\label{sec:standards-aus-verschiedenen-sprachen}
 
-%\subsection{Java}\label{subsec:java}
-%\subsection{JavaScript}\label{subsec:javascript}
-%\subsection{Python}\label{subsec:python}
-%\subsection{C++}\label{subsec:c++}
+\subsection{Java}\label{subsec:java}
+\textcolor{blue}{
+    In der Standardbibliothek ist ein Logger seit Java-Version 1.4 verfügbar.
+    Dieser kann durch den Import \enquote{\texttt{java.util.logging}} genutzt werden.
+    Vorher wurde bereits Log4J, welches im Verlauf erläutert wird, entwickelt, weshalb ein starker Vergleich gezogen wurde.
+    Der Standard aus Java ist nicht kompatibel mit Log4J.
+    Des Weiteren ist es nicht so leistungsstark wie Log4J.
+    Das Logging aus Java hat verschiedene Loglevel, die den Schwierigkeitsgrad des Logs zeigen.
+    Je nach Loglevel werden die Nachrichten protokolliert oder ignoriert.
+    Falls der Logger mit dem Loglevel Error konfiguriert wurde, wird die Nachricht mit Level Warning ignoriert.
+    Daher kann unnötiger Aufwand entstehen, falls eine Nachricht, die aufwändig aufgebaut wird, nicht geschrieben wird, jedoch vorher schon eine Variable ausgewertet hat.
+    Im diesen Aufwand zu verringern wurde die Methode boolean isLoggable(Level level) der Bibliothek hinzugefügt.
+    Diese wertet den Ausdruck in der Log-Nachricht erst aus, falls die Nachricht geloggt werden darf.
+    Eine weitere Möglichkeit den Aufwand zu verringern gibt es seit Java-Version 8.
+    Hier wurden Lambda-Ausdrücke eingeführt, um dne Programmcode in einem Block zusammen erst auszuführen, falls das Logging-Framework den Block ausführen soll.
+}\autocite{rheinwerk, baeldung}
+
+\subsection{JavaScript}\label{subsec:javascript}
+
+\subsection{Python}\label{subsec:python}
+
+\subsection{C++}\label{subsec:c++}
 
 
 \section{Logging}\label{sec:logging-verfahren}
 
-%\subsection{Interface SLF4J}\label{subsec:interface-slf4j}
-%\subsection{Log4J}\label{subsec:log4j}
+\textcolor{blue}{
+    Bis die Standardbibliothek von Java um einen Logger ergänzt wurde, wurde bereits das Log4J entwickelt.
+    Log4J ist ein Open Source Projekt.
+    Es wird durch eine Apache Software License verbreitet.
+    Log4J ist eine populäre API, weshalb sie in mehrere Sprachen übersetzt wurde.
+    Beispielsweise wurde sie in C++ übersetzt, dort heißt die API Log4cxx.
+    \\
+    Die zentralen Begriffe der API sind Logger, Level, Appender und Layout.
+    Logger entspricht dem Zentrum des Interesse.
+    Dieser kümmert sich um die Logs.
+    Erstellt sie, falls diese dem richtigen Level entsprechen.
+    Level ist das Loglevel.
+    Der Schwierigkeitsgrad des Ereignisses.
+    Falls der Logger das entsprechende Level des Ereignisses hat, soll die Nachricht in das Protokoll geschrieben werden.
+    Der Appender kümmert sich um das Anhängen der Ausgabe.
+    Falls die Ereignisse in Dateien geschrieben werden, sorgt der Appender dafür, dass die vorher geschriebenen Ereignisse nicht geschrieben werden.
+    Layout ist das Format, indem die Nachrichten festgehalten werden, beispielsweise HTML oder XML.
+    Das Logging mit Log4J lässt sich über Java Anweisungen konfigurieren.
+    Es kann aber auch eine Konfigurationsdatei verwendet werden.
+    Mittlerweile ist diese Bibliothek veraltet und dient nur als Grundlage für moderne Nachfolger.
+    \\
+    \\
+    Eine Verbesserung dieses Logging-Frameworks ist Log4J2.
+    Die größte Verbesserung ist das asynchrone Protokollieren.
+    Hierdurch wird das Multithreading möglich und der Logger bleibt in keiner Deadlock, wie es in Log4J1 war.
+    Bei eigenständigen Anwendungen ist Log4J2 \enquote{müllfrei}, weshalb der Garbage Collector den Logger nicht entfernt.
+    Durch das Plugin-System ist Log4J2 einfach zu erweitern.
+    Beispielsweise einen neuen Appender hinzuzufügen ist einfach, da Log4J nicht verändert werden muss.
+    Log4J2 unterstützt für den Appender gewünschte Formate.
+    Zum Beispiel Logback kann nur ein bestimmtes Format mit dem Appender transportieren.
+}\autocite{rheinwerk, baeldung, log4j2}
 
 
 \section{Tracing}\label{sec:tracing-verfahren}
