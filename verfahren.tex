@@ -5,20 +5,46 @@
 
 \subsection{Java}\label{subsec:java}
 \textcolor{blue}{
-    In der Standardbibliothek ist ein Logger seit Java-Version 1.4 verfügbar.
-    Dieser kann durch den Import \enquote{\texttt{java.util.logging}} genutzt werden.
+    In der Standardbibliothek ist eine Logging-Möglichkeit seit Java-Version 1.4 verfügbar.
+    Dieses Paket enthält unter anderem einen Logger.
+    Dieser kann durch den Import \enquote{\texttt{import java.util.logging.Logger}} genutzt werden.
+    Um einen Logger zu nutzen, muss er auch initialisiert werden.
+    Hierfür wird meist ein privater und statischer Logger mit dem Klassennamen als Parameter, der nutzenden Klasse, erstellt:
+    \\
+    \hspace*{15mm}
+    \texttt{\textbf{private static final} Logger LOGGER =
+        \\
+        \hspace*{30mm}Logger.getLogger(classname.\textbf{class}.getName());}
+    \\
+    Um eine Nachricht mit dem Logger zu erstellen, muss die Methode entsprechend zu dem Loglevel genutzt werden.
+    Für eine informelle Nachricht wird die Methode \texttt{info()} genutzt, beispielsweise:
+    \\
+    \hspace*{15mm}
+    \texttt{LOGGER.info(\enquote{Loggername: } + LOGGER.getName());}
+    \\
+    Die Nachrichten können auch über eine allgemeinere Methode erstellt werden.
+    Diese nennt sich \texttt{log()} und nimmt als Parameter das Loglevel und die Nachricht an.
+    Um diese Methode nutzen zu können muss ein weiterer Import gesetzt sein.
+    Denn es werden die statischen Einträge der Levelklasse genutzt.
+    \\
+    \hspace*{15mm}
+    \texttt{LOGGER.log(Level.SEVERE, \enquote{Eine Exception ist aufgetreten.})}
+    \\
+    \\
     Vorher wurde bereits Log4J, welches im Verlauf erläutert wird, entwickelt, weshalb ein starker Vergleich gezogen wurde.
     Der Standard aus Java ist nicht kompatibel mit Log4J.
     Des Weiteren ist es nicht so leistungsstark wie Log4J.
+    \\
     Das Logging aus Java hat verschiedene Loglevel, die den Schwierigkeitsgrad des Logs zeigen.
+    Diese heißen SEVERE, WARNING, INFO, CONFIG, FINE, FINER und FINEST
     Je nach Loglevel werden die Nachrichten protokolliert oder ignoriert.
-    Falls der Logger mit dem Loglevel Error konfiguriert wurde, wird die Nachricht mit Level Warning ignoriert.
+    Falls der Logger mit dem Loglevel WARNING konfiguriert wurde, wird die Nachricht mit Level INFO ignoriert.
     Daher kann unnötiger Aufwand entstehen, falls eine Nachricht, die aufwändig aufgebaut wird, nicht geschrieben wird, jedoch vorher schon eine Variable ausgewertet hat.
     Im diesen Aufwand zu verringern wurde die Methode boolean isLoggable(Level level) der Bibliothek hinzugefügt.
     Diese wertet den Ausdruck in der Log-Nachricht erst aus, falls die Nachricht geloggt werden darf.
     Eine weitere Möglichkeit den Aufwand zu verringern gibt es seit Java-Version 8.
     Hier wurden Lambda-Ausdrücke eingeführt, um dne Programmcode in einem Block zusammen erst auszuführen, falls das Logging-Framework den Block ausführen soll.
-}\autocite{rheinwerk, baeldung}
+}\autocite{rheinwerk, baeldung, examples}
 
 \subsection{JavaScript}\label{subsec:javascript}
 
