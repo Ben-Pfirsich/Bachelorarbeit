@@ -5,13 +5,13 @@
 
 \subsection{Java}\label{subsec:java}
 \textcolor{blue}{
-    In der Standardbibliothek ist eine Logging-Möglichkeit seit Java-Version 1.4 verfügbar.
+    Die Standardbibliothek bietet seit Java-Version 1.4 ein Logging-Framework.
     Dieses Paket enthält unter anderem einen Logger.
     Dieser kann durch den Import \enquote{\texttt{import java.util.logging.Logger}} genutzt werden.
     Um einen Logger zu nutzen, muss er auch initialisiert werden.
-    Hierfür wird meist ein privater und statischer Logger mit dem Klassennamen als Parameter, der nutzenden Klasse, erstellt:
+    Hierfür wird der Logger mit dem Klassennamen als Parameter, der nutzenden Klasse, erstellt oder der entsprechende Logger gefunden:
     \\
-    \hspace*{15mm}
+    \hspace*{10mm}
     \texttt{\textbf{private static final} Logger LOGGER =
         \\
         \hspace*{30mm}Logger.getLogger(classname.\textbf{class}.getName());}
@@ -19,16 +19,31 @@
     Um eine Nachricht mit dem Logger zu erstellen, muss die Methode entsprechend zu dem Loglevel genutzt werden.
     Für eine informelle Nachricht wird die Methode \texttt{info()} genutzt, beispielsweise:
     \\
-    \hspace*{15mm}
+    \hspace*{10mm}
     \texttt{LOGGER.info(\enquote{Loggername: } + LOGGER.getName());}
+    \\
+    Hierbei muss der Logger mindestens das Level INFO konfiguriert haben, welches als Standardebene eingestellt ist.
+    Hierdurch entsteht folgender Log mit path als Variable für den Package- und Klassenname:
+    \\
+    \hspace*{10mm}
+    \texttt{Jun 23, 2022 1:19:30 PM path main INFO: Loggername: path}
     \\
     Die Nachrichten können auch über eine allgemeinere Methode erstellt werden.
     Diese nennt sich \texttt{log()} und nimmt als Parameter das Loglevel und die Nachricht an.
+    Sowie ein Objekt, welches protokolliert werden soll.
+    Es können Objekt wie Exceptions gespeichert werden.
     Um diese Methode nutzen zu können muss ein weiterer Import gesetzt sein.
     Denn es werden die statischen Einträge der Levelklasse genutzt.
     \\
-    \hspace*{15mm}
-    \texttt{LOGGER.log(Level.SEVERE, \enquote{Eine Exception ist aufgetreten.})}
+    \hspace*{10mm}
+    \texttt{LOGGER.log(Level.SEVERE, \enquote{Eine Exception ist aufgetreten}, ex)}
+    \\
+    Hierbei entsteht eine Nachricht in gleichem Format:
+    \\
+    \hspace*{10mm}
+    \texttt{Jun 23, 2022 1:19:31 PM path main SEVERE: Eine Exception
+    \\
+    \hspace*{30mm} ist aufgetreten.}
     \\
     \\
     Vorher wurde bereits Log4J, welches im Verlauf erläutert wird, entwickelt, weshalb ein starker Vergleich gezogen wurde.
@@ -44,12 +59,39 @@
     Diese wertet den Ausdruck in der Log-Nachricht erst aus, falls die Nachricht geloggt werden darf.
     Eine weitere Möglichkeit den Aufwand zu verringern gibt es seit Java-Version 8.
     Hier wurden Lambda-Ausdrücke eingeführt, um dne Programmcode in einem Block zusammen erst auszuführen, falls das Logging-Framework den Block ausführen soll.
+    \\
+    Das Logging-Framework enthält als Komponente einen Handler, der die geloggten Nachrichten an einen bestimmten Zielort speichert.
+    Der KonsolenHandler schreibt die geloggten Nachrichten in die Konsole.
+    Der FileHandler speicher die Logs in Dateien.
+    Es gibt noch weitere Handler, die für das Speichern der Daten genutzt werden können.
+    \\
+    Eine weitere Komponente des Logging-Frameworks ist ein Formatter.
+    Jedem Handler ist ein Formatter zugeordnet.
+    Es wird unterschieden zwischen SimpleFormatter und XMLFormatter.
+    Der SimpleFormatter wird genutzt, um die Logs für den Menschen einfach lesbar zu machen.
+    Für den FileHandler ist ist der XMLFormatter standardisiert.
 }\autocite{rheinwerk, baeldung, examples}
 
 \subsection{JavaScript}\label{subsec:javascript}
+\textcolor{blue}{
+    Bei der Entwicklung einer Webanwendung können die Fehlermeldung in der Konsole ausgegeben werden.
+    Bei veröffentlichtem Code ist die Konsole nicht verfügbar.
+    Daher wird die Möglichkeit genutzt, die Fehlermeldungen bei dem Client zu sammeln und an einen Server zu senden, wo diese Logs auszuwerten sind.
+    Auf der Konsole können mehrere Methoden verwendet werden, die den verschiedenen Logleveln entsprechen.
+    Für JavaScript gibt es vier Loglevel.
+    Das Geringste ist für Klartext und nutzt die Methode \enquote{log()}.
+    Das nächste Level ist Info mit der Methode \enquote{info()}.
+    Außerdem gibt es wie bei anderen Log-Frameworks Warn und Error mit \enquote{warn()} und \enquote{error()}.
+    Mit diesen Aufrufen werden die Nachrichten entsprechend unterlegt, entsprechend dem Level.
+    Hierfür werden die Methoden wie folgt aufgerufen:
+    \\
+    \hspace*{10mm}
+    \texttt{console.log(msg)}
+}\autocite{stackify}
 
 \subsection{Python}\label{subsec:python}
-
+\textcolor{blue}{
+}
 \subsection{C++}\label{subsec:c++}
 
 
