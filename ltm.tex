@@ -1,8 +1,10 @@
-\chapter{Definitionen von Logging, Tracing {\fontfamily{bch}\selectfont \&} Monitoring}\label{ch:definition-von-logging-tracing-&-monitoring}
+\chapter{Definition Logging, Tracing {\fontfamily{bch}\selectfont \&} Monitoring}\label{ch:definition-von-logging-tracing-&-monitoring}
 Es existiert kein fehlerfreies IT-System.
+%TODO: besser formulieren, ltm unterstützen den prozess ein fehlerhaftes system zu verbessern und zu perfektionieren.
 Daher muss ein Prozess zu einem funktionierenden System geschaffen werden.
 Logging zeichnet auf, was eine Anwendung macht.
 Tracing protokolliert, wenn eine Anwendung andere Service aufruft.
+%TODO: Aufrufe von services
 Monitoring zieht aus diesen Informationen Schlüsse, um Fehler einer Anwendung aufzudecken.
 Wenn die gefundenen Fehler ausgebessert werden, kommt man dem fehlerfreien System näher.
 Im Folgenden werden die drei Verfahren genauer erklärt.
@@ -14,7 +16,7 @@ Hierzu zählen Fehlermeldungen, Systemnachrichten, Statusmeldungen, etc.
 Die Daten, die protokolliert werden, werden in eine oder mehrere Log-Dateien geschrieben.
 Diese Dateien enthalten die Ereignisse mit Zeitstempel, welche meist chronologisch geschrieben werden.
 \\
-Außerdem werden die einzelnen Logs mit einem Loglevel versehen, womit der Nutzer das Protokoll besser auswerten kann.
+Außerdem werden die einzelnen Logs mit einem Loglevel versehen, womit der Entwickler das Protokoll besser auswerten kann.
 Es gibt sechs verschiedene Loglevel.
 Das schwerwiegendste Level heißt \enquote{Fatal}, hierbei spiegeln die Logs wider, dass die Applikation in einem katastrophalen Zustand ist und eingegriffen werden muss.
 Falls dieses Level auftritt, sollte sofort eingegriffen werden, um die Applikation wieder verfügbar zu machen.
@@ -37,6 +39,7 @@ Hierbei sollten die Logs an einer zentralen Stelle gespeichert werden, wie zum B
 Logs sollten bestimmten Standards entsprechen, um die Integration mit zentralisierten Protokollierungsdiensten zu erleichtern.
 Die Logs können kurzfristig auch in der Konsole ausgegeben werden, können dadurch aber nicht langzeitig ausgewertet.
 Lokale Speicherung der Logs in Dateien erschweren das Auswerten.
+%TODO Visualisierung
 \\
 Das Event-Management stellt Funktionen bereit, um diese Daten auswerten zu können.
 Zusammengefasst Log- und Event-Management sammeln die Log-Daten, speichern sie, sodass die Daten genutzt werden können, um Probleme zu identifizieren, Prozesse nachzuvollziehen, Systemleistung zu optimieren oder Cyberangriffe und andere Sicherheitsvorfälle zu erkennen und abzuwehren.
@@ -144,6 +147,13 @@ Durch Monitoring fallen Abweichungen vom Normalzustand auf, dadurch sollte ein A
 Je nach Schweregrad des Fehlers werden verschiedene Medien zum Benachrichtigen des Nutzers verwendet.
 Bei schweren Fehlern kann eine SMS auf das Arbeitstelefon geschickt werden.
 Bei leichteren Fehlern kann eine Email reichen.
+\\
+\\
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{images/cpu-ozv-web}
+    \caption{CPU-Auslastung über 2 Tage}\label{fig:figure}
+\end{figure}
 \\
 Durch den Vergleich zu historischen Daten soll das Monitoring-System Aussagen über die Zuverlässigkeit einer Anwendung treffen.
 Durch das Überwachen einer Anwendung können Ausfälle vermieden und vorgebeugt werden.

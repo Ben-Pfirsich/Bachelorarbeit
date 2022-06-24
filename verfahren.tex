@@ -11,22 +11,29 @@
     Um einen Logger zu nutzen, muss er auch initialisiert werden.
     Hierfür wird der Logger mit dem Klassennamen als Parameter, der nutzenden Klasse, erstellt oder der entsprechende Logger gefunden:
     \\
+    \\
     \hspace*{10mm}
     \texttt{\textbf{private static final} Logger LOGGER =
         \\
         \hspace*{30mm}Logger.getLogger(classname.\textbf{class}.getName());}
     \\
+    \\
     Um eine Nachricht mit dem Logger zu erstellen, muss die Methode entsprechend zu dem Loglevel genutzt werden.
     Für eine informelle Nachricht wird die Methode \texttt{info()} genutzt, beispielsweise:
+    \\
     \\
     \hspace*{10mm}
     \texttt{LOGGER.info(\enquote{Loggername: } + LOGGER.getName());}
     \\
+    \\
     Hierbei muss der Logger mindestens das Level INFO konfiguriert haben, welches als Standardebene eingestellt ist.
     Hierdurch entsteht folgender Log mit path als Variable für den Package- und Klassenname:
     \\
+    \\
     \hspace*{10mm}
     \texttt{Jun 23, 2022 1:19:30 PM path main INFO: Loggername: path}
+    \\
+    \\
     \\
     Die Nachrichten können auch über eine allgemeinere Methode erstellt werden.
     Diese nennt sich \texttt{log()} und nimmt als Parameter das Loglevel und die Nachricht an.
@@ -35,10 +42,13 @@
     Um diese Methode nutzen zu können muss ein weiterer Import gesetzt sein.
     Denn es werden die statischen Einträge der Levelklasse genutzt.
     \\
+    \\
     \hspace*{10mm}
     \texttt{LOGGER.log(Level.SEVERE, \enquote{Eine Exception ist aufgetreten}, ex)}
     \\
+    \\
     Hierbei entsteht eine Nachricht in gleichem Format:
+    \\
     \\
     \hspace*{10mm}
     \texttt{Jun 23, 2022 1:19:31 PM path main SEVERE: Eine Exception
@@ -69,7 +79,7 @@
     Jedem Handler ist ein Formatter zugeordnet.
     Es wird unterschieden zwischen SimpleFormatter und XMLFormatter.
     Der SimpleFormatter wird genutzt, um die Logs für den Menschen einfach lesbar zu machen.
-    Für den FileHandler ist ist der XMLFormatter standardisiert.
+    Für den FileHandler ist der XMLFormatter standardisiert.
 }\autocite{rheinwerk, baeldung, examples}
 
 \subsection{JavaScript}\label{subsec:javascript}
@@ -85,13 +95,46 @@
     Mit diesen Aufrufen werden die Nachrichten entsprechend unterlegt, entsprechend dem Level.
     Hierfür werden die Methoden wie folgt aufgerufen:
     \\
+    \\
     \hspace*{10mm}
     \texttt{console.log(msg)}
 }\autocite{stackify}
 
 \subsection{Python}\label{subsec:python}
 \textcolor{blue}{
+    In der Standardbibliothek von Python ist ein Logging-Modul enthalten.
+    Dieses kann über den Import \enquote{\texttt{import logging}} genutzt werden und hat wie andere Loggingverfahren eine Logger, Handler, Filter und Formatter als Klassen in diesem Paket.
+    Der Logger wird wie in anderen Programmiersprachen nicht direkt initialisiert, sondern über die Methode \texttt{getLogger(\_\_name\_\_)} den aktuellen Logger zurückgegeben.
+    Der Logger wird direkt im Code verwendet und gibt die Informationen an den Handler weiter.
+    Dieser sendet die Log-Nachrichten an den Zielort, beispielsweise eine Datei.
+    Die Klasse \texttt{Filter} bietet die Möglichkeit, zu filtern, ob ein Datensatz protokolliert werden soll.
+    Der Formatter erzeugt das Layout der Logs.
+    \\
+    Wie auch bei den anderen Log-Verfahren gibt es verschiedene Schwierigkeitsgrade mit entsprechender Methode, die auf dem Logger-Objekt aufgerufen wird.
+    \\
+    \begin{figure}[h]
+        \centering
+        \begin{tabular}[h]{|l|l|}
+            \rowcolor{gray!50}
+            \hline
+            Level    & Methode                       \\
+            \hline
+            Critical & critical(msg, args, kwargs)   \\
+            \hline
+            Error    & error(msg, args, kwargs)      \\
+            \hline
+            Warning  & warning(msg, args, kwargs)    \\
+            \hline
+            Info     & info(msg, args, kwargs)       \\
+            \hline
+            Debug    & debug(msg, args, kwargs)      \\
+            \hline
+            Notset   & log(level, msg, args, kwargs) \\
+            \hline
+        \end{tabular}\label{fig:figure2}
+    \end{figure}
 }
+
 \subsection{C++}\label{subsec:c++}
 
 

@@ -23,6 +23,8 @@
        2. JavaScript
        3. Python
        4. C++
+       5. C#
+       6. Rust
     2. L
        1. Interface SLF4J
        2. Log4J
