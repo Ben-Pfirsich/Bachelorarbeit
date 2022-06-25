@@ -18,23 +18,19 @@
     3. Sinnvolle Ausgaben
     4. Wann ist es übertrieben
 5. Verfahren
-    1. Standards aus verschiedenen Sprachen
-       1. Java
-       2. JavaScript
-       3. Python
-       4. C++
-       5. C#
-       6. Rust
     2. L
-       1. Interface SLF4J
-       2. Log4J
-       3. Log4Shell
-       4. GrayLog
-       5. Allmans Log
-       
-       6. ErrorLog
-       7. Debug Log
-       8. ...
+       1. Standards aus verschiedenen Sprachen
+          1. Java
+          2. JavaScript
+          3. Python
+          4. C++
+          5. C#
+          6. Rust
+       2. Interface SLF4J
+       3. Log4J
+       4. Log4Shell
+       5. GrayLog
+       6. Allmans Log
     3. T
        1. Jaeger
     4. M

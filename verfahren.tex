@@ -1,9 +1,11 @@
 \chapter{Verfahren}\label{ch:verfahren}
 
 
-\section{Standards aus verschiedenen Sprachen}\label{sec:standards-aus-verschiedenen-sprachen}
+\section{Logging}\label{sec:logging-verfahren}
 
-\subsection{Java}\label{subsec:java}
+\subsection{Standards aus verschiedenen Sprachen}\label{subsec:standards-aus-verschiedenen-sprachen}
+
+\subsubsection{Java}\label{subsubsec:java}
 \textcolor{blue}{
     Die Standardbibliothek bietet seit Java-Version 1.4 ein Logging-Framework.
     Dieses Paket enthält unter anderem einen Logger.
@@ -84,7 +86,7 @@
     Für den FileHandler ist der XMLFormatter standardisiert.
 }\autocite{rheinwerk, baeldung, examples}
 
-\subsection{JavaScript}\label{subsec:javascript}
+\subsubsection{JavaScript}\label{subsubsec:javascript}
 \textcolor{blue}{
     Bei der Entwicklung einer Webanwendung können die Fehlermeldung in der Konsole ausgegeben werden.
     Bei veröffentlichtem Code ist die Konsole nicht verfügbar.
@@ -103,7 +105,7 @@
     \texttt{console.log(msg)}
 }\autocite{stackify}
 
-\subsection{Python}\label{subsec:python}
+\subsubsection{Python}\label{subsubsec:python}
 \textcolor{blue}{
     In der Standardbibliothek von Python ist ein Logging-Modul enthalten.
     Dieses kann über den Import \enquote{\texttt{import logging}} genutzt werden und hat wie andere Loggingverfahren eine Logger, Handler, Filter und Formatter als Klassen in diesem Paket.
@@ -182,16 +184,15 @@
     \\
 }\autocite{docs-python, ionos}
 
-\subsection{C++}\label{subsec:c++}
+\subsubsection{C++}\label{subsubsec:c++}
 \textcolor{blue}{
-In der Standardbibliothek der Programmiersprache C++ ist kein Logger integriert.
-Jedoch ist er leicht zu erstellen und sollte durch ein Interface abgekapselt werden.
-Für ein Interface werden die log-Methoden virtualisiert, je nachdem welche Loglevel genutzt werden sollen.
-Minimal sollten Info, Warn und Error angelegt sein.
+    In der Standardbibliothek der Programmiersprache C++ ist kein Logger integriert.
+    Jedoch ist er leicht zu erstellen und sollte durch ein Interface abgekapselt werden.
+    Für ein Interface werden die log-Methoden virtualisiert, je nachdem welche Loglevel genutzt werden sollen.
+    Minimal sollten Info, Warn und Error angelegt sein.
 }\autocite{c++}
 
-\section{Logging}\label{sec:logging-verfahren}
-
+\subsection{Log4J}\label{subsec:log4j}
 \textcolor{blue}{
     Bis die Standardbibliothek von Java um einen Logger ergänzt wurde, wurde bereits das Log4J entwickelt.
     Log4J ist ein Open Source Projekt.
@@ -211,9 +212,10 @@ Minimal sollten Info, Warn und Error angelegt sein.
     Layout ist das Format, indem die Nachrichten festgehalten werden, beispielsweise HTML oder XML.
     Das Logging mit Log4J lässt sich über Java Anweisungen konfigurieren.
     Es kann aber auch eine Konfigurationsdatei verwendet werden.
-    Mittlerweile ist diese Bibliothek veraltet und dient nur als Grundlage für moderne Nachfolger.
-    \\
-    \\
+    Mittlerweile ist diese Bibliothek veraltet und dient nur als Grundlage für moderne Nachfolger.}
+
+\subsection{Log4J2}\label{subsec:log4j2}
+\textcolor{blue}{
     Eine Verbesserung dieses Logging-Frameworks ist Log4J2.
     Die größte Verbesserung ist das asynchrone Protokollieren.
     Hierdurch wird das Multithreading möglich und der Logger bleibt in keiner Deadlock, wie es in Log4J1 war.
@@ -222,7 +224,67 @@ Minimal sollten Info, Warn und Error angelegt sein.
     Beispielsweise einen neuen Appender hinzuzufügen ist einfach, da Log4J nicht verändert werden muss.
     Log4J2 unterstützt für den Appender gewünschte Formate.
     Zum Beispiel Logback kann nur ein bestimmtes Format mit dem Appender transportieren.
-}\autocite{rheinwerk, baeldung, log4j2}
+}
+
+\subsection{SLF4J}\label{subsec:slf4j}
+\textcolor{blue}{
+    SLF4J steht für Simple Logging Facade for Java und dient als Fassade für verschiedene Logging-Frameworks.
+    Es ist eine einfache API vor einer komplexen Implementierung, beispielsweise dem Logger der Standardbibliothek von Java.
+    Interface hilft dabei einfach das Framework zu wechseln.
+    \\
+    Um diesen Logger zu nutzen, bindet man das Logging-Framework in die pom.xml ein und konfiguriert das Logging wie bei dem genutzten Framework.
+    Bei der Nutzung von Log4J2 wird die SLF4J-API genutzt.
+    Daher werden drei Dependencies aus org.apache.logging.log4j eingebunden:
+    \begin{figure}[h]
+        \centering
+        \textcolor{blue}{
+            \begin{itemize}
+                \item log4j-api
+                \item log4j-core
+                \item log4j-slf4j-impl
+            \end{itemize}\label{fig:figure3}}
+    \end{figure}
+    \\
+    Das Initialisieren des Loggers wird über die LoggerFactory aus dem SLF4J-Paket und als Logger-Objekt gespeichert.
+    Weshalb die Import-Anweisungen für die beiden in der nutzenden Klasse gesetzt sein muss:
+    \\
+    \\
+    \hspace*{10mm}
+    \texttt{import org.slf4j.Logger;}
+    \\
+    \hspace*{10mm}
+    \texttt{import org.slf4j.LoggerFactory;}
+    \\
+    \\
+    In der Klasse wird der Logger über folgende Zeile definiert.
+    \\
+    \\
+    \hspace*{10mm}
+    \texttt{\textbf{private static Logger} logger = LoggerFactory
+    \\
+    \hspace*{30mm}
+    .getLogger(classname.class);}
+    \\
+    \\
+    Bei der Nutzung von Logback muss die SLF4J-Fassade nicht genutzt werden, da Logback bereits die API eingebunden hat.
+\\
+SLF4J bietet weitere Möglichkeiten Logging effizienter zu machen und den Quellcode zu verbessern
+Hierfür werden die Nachrichten nicht durch Strings zusammengesetzt, sondern durch Parameter übergeben, die im Nachhinein eingesetzt werden.
+Hierdurch wird der Parameter, der eingesetzt wird, erst ausgewertet, wenn die Nachricht in die Protokolle aufgenommen werden soll.
+Dadurch wird die Performance wesentlich erhöht.
+Falls dieser Parameter in Log4J erst beim Loggen ausgewertet werden soll, muss ein if-Block um die Methode gesetzt werden, um zu prüfen, ob die Nachricht geloggt werden soll, beispielsweise:
+\\
+\\
+\hspace*{10mm}
+\texttt{\textbf{if}(logger.isDebugEnabled())\{
+\\
+\hspace*{15mm}
+logger.debug(\enquote{Variablenwert: } + variable);
+\\
+\hspace*{10mm}
+\}
+}
+}
 
 
 \section{Tracing}\label{sec:tracing-verfahren}
@@ -237,7 +299,6 @@ Minimal sollten Info, Warn und Error angelegt sein.
 %\subsection{Argos}\label{subsec:argos}
 
 
-\section{Weiterentwicklungen}\label{sec:weiterentwicklungen}
+%\section{Weiterentwicklungen}\label{sec:weiterentwicklungen}
 
-
-\section{Performance}\label{sec:performance}
+%\section{Performance}\label{sec:performance}
