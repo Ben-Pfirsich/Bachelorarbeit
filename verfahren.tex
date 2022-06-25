@@ -39,7 +39,7 @@
     Diese nennt sich \texttt{log()} und nimmt als Parameter das Loglevel und die Nachricht an.
     Sowie ein Objekt, welches protokolliert werden soll.
     Es können Objekt wie Exceptions gespeichert werden.
-    Um diese Methode nutzen zu können muss ein weiterer Import gesetzt sein.
+    Um diese Methode nutzen zu können, muss ein weiterer Import gesetzt sein \enquote{\texttt{import java.util.logging.Level}}.
     Denn es werden die statischen Einträge der Levelklasse genutzt.
     \\
     \\
@@ -60,19 +60,21 @@
     Der Standard aus Java ist nicht kompatibel mit Log4J.
     Des Weiteren ist es nicht so leistungsstark wie Log4J.
     \\
+    \\
     Das Logging aus Java hat verschiedene Loglevel, die den Schwierigkeitsgrad des Logs zeigen.
-    Diese heißen SEVERE, WARNING, INFO, CONFIG, FINE, FINER und FINEST
+    Diese heißen SEVERE, WARNING, INFO, CONFIG, FINE, FINER und FINEST.
     Je nach Loglevel werden die Nachrichten protokolliert oder ignoriert.
     Falls der Logger mit dem Loglevel WARNING konfiguriert wurde, wird die Nachricht mit Level INFO ignoriert.
     Daher kann unnötiger Aufwand entstehen, falls eine Nachricht, die aufwändig aufgebaut wird, nicht geschrieben wird, jedoch vorher schon eine Variable ausgewertet hat.
     Im diesen Aufwand zu verringern wurde die Methode boolean isLoggable(Level level) der Bibliothek hinzugefügt.
     Diese wertet den Ausdruck in der Log-Nachricht erst aus, falls die Nachricht geloggt werden darf.
     Eine weitere Möglichkeit den Aufwand zu verringern gibt es seit Java-Version 8.
-    Hier wurden Lambda-Ausdrücke eingeführt, um dne Programmcode in einem Block zusammen erst auszuführen, falls das Logging-Framework den Block ausführen soll.
+    Hier wurden Lambda-Ausdrücke eingeführt, um den Programmcode in einem Block zusammen erst auszuführen, falls das Logging-Framework den Block ausführen soll.
+    \\
     \\
     Das Logging-Framework enthält als Komponente einen Handler, der die geloggten Nachrichten an einen bestimmten Zielort speichert.
     Der KonsolenHandler schreibt die geloggten Nachrichten in die Konsole.
-    Der FileHandler speicher die Logs in Dateien.
+    Der FileHandler speichert die Logs in Dateien.
     Es gibt noch weitere Handler, die für das Speichern der Daten genutzt werden können.
     \\
     Eine weitere Komponente des Logging-Frameworks ist ein Formatter.
@@ -88,6 +90,7 @@
     Bei veröffentlichtem Code ist die Konsole nicht verfügbar.
     Daher wird die Möglichkeit genutzt, die Fehlermeldungen bei dem Client zu sammeln und an einen Server zu senden, wo diese Logs auszuwerten sind.
     Auf der Konsole können mehrere Methoden verwendet werden, die den verschiedenen Logleveln entsprechen.
+    \\
     Für JavaScript gibt es vier Loglevel.
     Das Geringste ist für Klartext und nutzt die Methode \enquote{log()}.
     Das nächste Level ist Info mit der Methode \enquote{info()}.
@@ -104,39 +107,88 @@
 \textcolor{blue}{
     In der Standardbibliothek von Python ist ein Logging-Modul enthalten.
     Dieses kann über den Import \enquote{\texttt{import logging}} genutzt werden und hat wie andere Loggingverfahren eine Logger, Handler, Filter und Formatter als Klassen in diesem Paket.
-    Der Logger wird wie in anderen Programmiersprachen nicht direkt initialisiert, sondern über die Methode \texttt{getLogger(\_\_name\_\_)} den aktuellen Logger zurückgegeben.
+    Der Logger wird, wie in anderen Programmiersprachen, nicht direkt initialisiert, sondern über die Methode \texttt{getLogger(\_\_name\_\_)} den aktuellen Logger zurückgegeben.
     Der Logger wird direkt im Code verwendet und gibt die Informationen an den Handler weiter.
     Dieser sendet die Log-Nachrichten an den Zielort, beispielsweise eine Datei.
-    Die Klasse \texttt{Filter} bietet die Möglichkeit, zu filtern, ob ein Datensatz protokolliert werden soll.
+    Die Klasse Filter bietet die Möglichkeit, zu filtern, ob ein Datensatz protokolliert werden soll.
     Der Formatter erzeugt das Layout der Logs.
     \\
     Wie auch bei den anderen Log-Verfahren gibt es verschiedene Schwierigkeitsgrade mit entsprechender Methode, die auf dem Logger-Objekt aufgerufen wird.
     \\
     \begin{figure}[h]
         \centering
-        \begin{tabular}[h]{|l|l|}
-            \rowcolor{gray!50}
-            \hline
-            Level    & Methode                       \\
-            \hline
-            Critical & critical(msg, args, kwargs)   \\
-            \hline
-            Error    & error(msg, args, kwargs)      \\
-            \hline
-            Warning  & warning(msg, args, kwargs)    \\
-            \hline
-            Info     & info(msg, args, kwargs)       \\
-            \hline
-            Debug    & debug(msg, args, kwargs)      \\
-            \hline
-            Notset   & log(level, msg, args, kwargs) \\
-            \hline
-        \end{tabular}\label{fig:figure2}
+        \textcolor{blue}{
+            \begin{tabular}[h]{|p{1.5cm}|p{5cm}|p{6cm}|}
+                \rowcolor{gray!50}
+                \hline
+                Level    & Methode                       & Nutzung                                                                        \\
+                \hline
+                Critical & critical(msg, args, kwargs)   & schwerwiegendes Problem liegt vor                                              \\
+                \hline
+                Error    & error(msg, args, kwargs)      & ein Problem ist aufgetreten, sodass eine Funktion nicht ausgeführt werden kann \\
+                \hline
+                Warning  & warning(msg, args, kwargs)    & eine unerwartete Situation oder ein zukünftiges Problem                        \\
+                \hline
+                Info     & info(msg, args, kwargs)       & Anwendung läuft ordnungsgemäß                                                  \\
+                \hline
+                Debug    & debug(msg, args, kwargs)      & Problemdiagnose                                                                \\
+                \hline
+                Notset   & log(level, msg, args, kwargs) &                                                                                \\
+                \hline
+            \end{tabular}\caption{Loglevel des Python-Loggers}\label{fig:figure2}}
     \end{figure}
-}
+    \\
+    Hierbei enthält \texttt{msg} das Format der Zeichenfolge, die die Nachricht hat.
+    \texttt{args} sind die Argumente, die in die Nachricht eingefügt werden.
+    Der letzte Parameter \texttt{kwargs} kann verschiedene Schlagwörter enthalten:
+    \begin{figure}[h]
+        \centering
+        \textcolor{blue}{
+            \begin{itemize}
+                \item exc\_info: falls nicht false, werden die Exception-Informationen den Logs hinzugefügt
+                \item stack\_info: default false, falls true wird Stack an Logs angefügt
+                \item stacklevel: default 1, falls größer werden dementsprechend viele Stackframes übersprungen
+                \item extra: bspw.
+                ein Wörterbuch
+            \end{itemize}
+            \label{fig:}}
+    \end{figure}
+    \\
+    Bei der Methode log wird das Level als statische Funktion angegeben.
+    Im Code sieht die Logging-Methode beispielsweise wie folgt aus:
+    \\
+    \\
+    \hspace*{10mm}
+    \texttt{d = \{\textquotesingle clientip\textquotesingle : \textquotesingle 193.168.0.1\textquotesingle, \textquotesingle user\textquotesingle: \textquotesingle fbloggs\textquotesingle \}}
+    \\
+    \hspace*{10mm}
+    \texttt{logger = logging.getLogger(\textquotesingle tcpserver\textquotesingle )}
+    \\
+    \hspace*{10mm}
+    \texttt{logger.warning(\textquotesingle Protocol problem: \%s\textquotesingle , \textquotesingle connection reset\textquotesingle ,
+        \\
+        \hspace*{30mm}
+        extra=d)}
+    \\
+    \\
+    Hierdurch entsteht beispielsweise folgende Nachricht, die als Log im Protokoll gespeichert werden kann:
+    \\
+    \\
+    \hspace*{10mm}
+    \texttt{2022-06-23 13:19:50,154 192.168.0.1 fbloggs Protocol
+    \\
+    \hspace*{30mm}
+    problem: connection reset}
+    \\
+}\autocite{docs-python, ionos}
 
 \subsection{C++}\label{subsec:c++}
-
+\textcolor{blue}{
+In der Standardbibliothek der Programmiersprache C++ ist kein Logger integriert.
+Jedoch ist er leicht zu erstellen und sollte durch ein Interface abgekapselt werden.
+Für ein Interface werden die log-Methoden virtualisiert, je nachdem welche Loglevel genutzt werden sollen.
+Minimal sollten Info, Warn und Error angelegt sein.
+}\autocite{c++}
 
 \section{Logging}\label{sec:logging-verfahren}
 
