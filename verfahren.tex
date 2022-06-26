@@ -84,7 +84,7 @@
     Es wird unterschieden zwischen SimpleFormatter und XMLFormatter.
     Der SimpleFormatter wird genutzt, um die Logs für den Menschen einfach lesbar zu machen.
     Für den FileHandler ist der XMLFormatter standardisiert.
-}\autocite{rheinwerk, baeldung, examples}
+}\autocite{rheinwerk, examples}
 
 \subsubsection{JavaScript}\label{subsubsec:javascript}
 \textcolor{blue}{
@@ -146,7 +146,7 @@
     \begin{figure}[h]
         \centering
         \textcolor{blue}{
-            \begin{itemize}
+            \begin{itemize}[noitemsep]
                 \item exc\_info: falls nicht false, werden die Exception-Informationen den Logs hinzugefügt
                 \item stack\_info: default false, falls true wird Stack an Logs angefügt
                 \item stacklevel: default 1, falls größer werden dementsprechend viele Stackframes übersprungen
@@ -212,7 +212,14 @@
     Layout ist das Format, indem die Nachrichten festgehalten werden, beispielsweise HTML oder XML.
     Das Logging mit Log4J lässt sich über Java Anweisungen konfigurieren.
     Es kann aber auch eine Konfigurationsdatei verwendet werden.
-    Mittlerweile ist diese Bibliothek veraltet und dient nur als Grundlage für moderne Nachfolger.}
+    Mittlerweile ist diese Bibliothek veraltet und dient nur als Grundlage für moderne Nachfolger.
+\\
+\\
+Im Zusammenhang mit Log4J wurde durch das Java Naming and Directory Interface (JNDI), welches geschrieben wurde, um Konfigurationsdateien aus dem Internet nachzuladen, eine große Sicherheitslücke geschaffen.
+Da Angreifer nun Code, der gefährlich für die Anwendung und das Unternehmen sein kann, einbinden können.
+Diese Sicherheitslücke wird Log4Shell bezeichnet und ist die größte Software-Schwachstelle.
+Hierbei kann es sein, dass die Angreifer durch ihren Code unbemerkt Brücken gesetzt haben, wodurch sie nicht ausgebessert wurden, als die Sicherheitslücke ausgebessert wurde.
+Die Angreifer können sich während der Kontrolle des Systems tot stellen, haben jedoch später die Kontrolle über das System, da Logger meist Adminrechte haben.}\autocite{baeldung, rheinwerk}
 
 \subsection{Log4J2}\label{subsec:log4j2}
 \textcolor{blue}{
@@ -220,11 +227,12 @@
     Die größte Verbesserung ist das asynchrone Protokollieren.
     Hierdurch wird das Multithreading möglich und der Logger bleibt in keiner Deadlock, wie es in Log4J1 war.
     Bei eigenständigen Anwendungen ist Log4J2 \enquote{müllfrei}, weshalb der Garbage Collector den Logger nicht entfernt.
+    \\
     Durch das Plugin-System ist Log4J2 einfach zu erweitern.
     Beispielsweise einen neuen Appender hinzuzufügen ist einfach, da Log4J nicht verändert werden muss.
     Log4J2 unterstützt für den Appender gewünschte Formate.
     Zum Beispiel Logback kann nur ein bestimmtes Format mit dem Appender transportieren.
-}
+}\autocite{log4j2, baeldung}
 
 \subsection{SLF4J}\label{subsec:slf4j}
 \textcolor{blue}{
@@ -238,7 +246,7 @@
     \begin{figure}[h]
         \centering
         \textcolor{blue}{
-            \begin{itemize}
+            \begin{itemize}[noitemsep]
                 \item log4j-api
                 \item log4j-core
                 \item log4j-slf4j-impl
@@ -267,24 +275,29 @@
     \\
     \\
     Bei der Nutzung von Logback muss die SLF4J-Fassade nicht genutzt werden, da Logback bereits die API eingebunden hat.
-\\
-SLF4J bietet weitere Möglichkeiten Logging effizienter zu machen und den Quellcode zu verbessern
-Hierfür werden die Nachrichten nicht durch Strings zusammengesetzt, sondern durch Parameter übergeben, die im Nachhinein eingesetzt werden.
-Hierdurch wird der Parameter, der eingesetzt wird, erst ausgewertet, wenn die Nachricht in die Protokolle aufgenommen werden soll.
-Dadurch wird die Performance wesentlich erhöht.
-Falls dieser Parameter in Log4J erst beim Loggen ausgewertet werden soll, muss ein if-Block um die Methode gesetzt werden, um zu prüfen, ob die Nachricht geloggt werden soll, beispielsweise:
-\\
-\\
-\hspace*{10mm}
-\texttt{\textbf{if}(logger.isDebugEnabled())\{
-\\
-\hspace*{15mm}
-logger.debug(\enquote{Variablenwert: } + variable);
-\\
-\hspace*{10mm}
-\}
-}
-}
+    \\
+    SLF4J bietet weitere Möglichkeiten Logging effizienter zu machen und den Quellcode zu verbessern
+    Hierfür werden die Nachrichten nicht durch Strings zusammengesetzt, sondern durch Parameter übergeben, die im Nachhinein eingesetzt werden.
+    Hierdurch wird der Parameter, der eingesetzt wird, erst ausgewertet, wenn die Nachricht in die Protokolle aufgenommen werden soll.
+    Dadurch wird die Performance wesentlich erhöht.
+    Falls dieser Parameter in Log4J erst beim Loggen ausgewertet werden soll, muss ein if-Block um die Methode gesetzt werden, um zu prüfen, ob die Nachricht geloggt werden soll, beispielsweise:
+    \\
+    \\
+    \hspace*{10mm}
+    \texttt{\textbf{if}(logger.isDebugEnabled())\{
+    \\
+    \hspace*{15mm}
+    logger.debug(\enquote{Variablenwert: } + variable);
+    \\
+    \hspace*{10mm}
+    \}
+    }
+}\autocite{baeldung, rheinwerk}
+
+%\subsection{Graylog}\label{subsec:graylog}
+%\textcolor{blue}{
+%
+%}
 
 
 \section{Tracing}\label{sec:tracing-verfahren}
