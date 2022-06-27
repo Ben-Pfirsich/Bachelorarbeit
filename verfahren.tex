@@ -3,7 +3,7 @@
 
 \section{Logging}\label{sec:logging-verfahren}
 
-\subsection{Standards aus verschiedenen Sprachen}\label{subsec:standards-aus-verschiedenen-sprachen}
+\subsection{Standardbibliotheken aus verschiedenen Sprachen}\label{subsec:standards-aus-verschiedenen-sprachen}
 
 \subsubsection{Java}\label{subsubsec:java}
 \textcolor{blue}{
@@ -212,14 +212,14 @@
     Layout ist das Format, indem die Nachrichten festgehalten werden, beispielsweise HTML oder XML.
     Das Logging mit Log4J lässt sich über Java Anweisungen konfigurieren.
     Es kann aber auch eine Konfigurationsdatei verwendet werden.
-    Mittlerweile ist diese Bibliothek veraltet und dient nur als Grundlage für moderne Nachfolger.
+    Mittlerweile ist diese Bibliothek veraltet und dient nur als Grundlage für moderne Nachfolger.\autocite{baeldung, rheinwerk}
 \\
 \\
 Im Zusammenhang mit Log4J wurde durch das Java Naming and Directory Interface (JNDI), welches geschrieben wurde, um Konfigurationsdateien aus dem Internet nachzuladen, eine große Sicherheitslücke geschaffen.
 Da Angreifer nun Code, der gefährlich für die Anwendung und das Unternehmen sein kann, einbinden können.
 Diese Sicherheitslücke wird Log4Shell bezeichnet und ist die größte Software-Schwachstelle.
 Hierbei kann es sein, dass die Angreifer durch ihren Code unbemerkt Brücken gesetzt haben, wodurch sie nicht ausgebessert wurden, als die Sicherheitslücke ausgebessert wurde.
-Die Angreifer können sich während der Kontrolle des Systems tot stellen, haben jedoch später die Kontrolle über das System, da Logger meist Adminrechte haben.}\autocite{baeldung, rheinwerk}
+Die Angreifer können sich während der Kontrolle des Systems tot stellen, haben jedoch später die Kontrolle über das System, da Logger meist Adminrechte haben.}\autocite{heise}
 
 \subsection{Log4J2}\label{subsec:log4j2}
 \textcolor{blue}{
@@ -292,7 +292,7 @@ Die Angreifer können sich während der Kontrolle des Systems tot stellen, haben
     \hspace*{10mm}
     \}
     }
-}\autocite{baeldung, rheinwerk}
+}\autocite{baeldung-slf, rheinwerk}
 
 %\subsection{Graylog}\label{subsec:graylog}
 %\textcolor{blue}{
